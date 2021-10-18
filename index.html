@@ -5,9 +5,66 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-   <link href="style.css">
+   <link href="style.css" rel="stylesheet" type="text/css">
 </head>
 <body>
+  <header>      
+    <h1>UI Quiz</h1>
+    <div></div>
+  </header>
+  <main>
+    <h2>Questions</h2>
+     <div class="question first">
+        <form action">
+            <h3>1. What is your name?</h3>
+            <input type="text" id="userName" name="userName" placeholder="answer">
+            <input type="submit" value="Submit" id="button">
+        </form>
+    </div>
+       
+    <form>
+        <div class = "question second">
+            <h3>2.Javascript is a typed language</h3>
+            <div class="checkbox question2">
+                <input type="radio" id="q2O1" name="q2O1">
+                <label for="q2O1">yes</label>
+                <input type="radio" name="q2O2" id="q2O2">
+                <label for="q2O2">NO</label>
+            </div>
+        </div>   
+        <div class="question third">
+            <h3>3.DOM?</h3>
+            <div class="checkbox question3">
+                <input type="radio" id="q3O1" name="q3O1">
+                <label for="q3O1">Document Object Mirror</label>
+                <input type="radio" id="q3O2" name="q3O2">
+                <label for="q3O2">Document Object Model</label>
+            </div>
+        </div>
+        <div class="question fourth">
+            <h3>Const x = y.push() What's 'y'?</h3>
+            <div class="checkbox question4">
+                <input type="radio" id="q4O1" name="q4O1">
+                <label for="q4O1">A string</label>
+                <input type="radio" id="q4O2"name="q4O2">
+                <label for="q3O2">An array</label>
+            </div>
+        </div>    
+        <div class="question fifth">
+            <h3>5.An Object instance is?</h3>
+            <div class="checkbox question5">
+                <input type="radio" id="q5O1" name="q5O1">
+                <label for="q5O1">A constructure</label>
+                <input type="radio" name="q5O2" id="q5O2">
+                <label for="q5O2">An Occurence of the same object</label>
+            </div>
+        </div> 
+        
+        <input type="submit" value="Submit" id="button">
+
+
+    </form>
+  </main>
     
 
   <script src="script.js"></script>  
