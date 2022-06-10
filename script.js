@@ -8,19 +8,19 @@ const score = document.querySelector(".score");
 const regex = /^[a-zA-Z]{6,20}$/;
 
 const validAnswers = ["B", "B", "B", "B"];
-
+var checker = false;
 
 // first function to check if the first form is valid
 submitForm.addEventListener("submit", (e) => {
   e.preventDefault();
   checkName(userName.value);
-  userName.value = "";
-  btnSubmit.setAttribute("disabled", "true");
 });
 
 function checkName(name) {
   if (name === "" || name == null) {
-    alert("must give a name");
+    const errorMessage = document.createElement('h3');
+    errorMessage.innerText = "You must give a name";
+    userName.appendChild(errorMessage);
   } else {
   }
 
@@ -32,38 +32,60 @@ function checkName(name) {
     inputsiplay.style.marginTop = "34px";
     inputsiplay.style.width = "377px";
     displayuserName.appendChild(inputsiplay);
+    userName.value = "";
+    btnSubmit.setAttribute("disabled", "true");
+    checker = true;
   } else {
-    alert("the name must have min 6 characters and max:20 characters");
+
+    const errorNameLength = document.createElement('h5');
+    errorNameLength.innerText = "the name must have min 6 characters and max:20 characters";
+    errorNameLength.style.backgroundColor = "white";
+    errorNameLength.style.color = "red";
+    userName.previousElementSibling.appendChild(errorNameLength);
+    setTimeout(function () {
+      errorNameLength.innerText = "";
+      errorNameLength.style.display = "none";
+    }, 2000);
   }
 }
 
 // function to check the validty of the second form
 score.addEventListener("submit", (e) => {
   e.preventDefault();
-  checkUserAnswers();
-  window.scrollTo({ top: 0, behavior: "smooth" });
+  if (checker) {
+    checkUserAnswers();
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  } else {
+    alert("you must provide a name first");
+  }
 });
 
 function checkUserAnswers() {
   const answers = document.querySelectorAll('[type="radio"]:checked');
-  let finalScore=0;
-  answers.forEach((element,index) => {
-// console.log(index);
-    if(validAnswers[index] === element.value)
-    {
-      finalScore+=25;
-      console.log('yes');
-      console.log(finalScore);
+  let finalScore = 0;
+  answers.forEach((element, index) => {
+
+    if (validAnswers[index] === element.value) {
+      finalScore += 25;
     }
   })
-  
-  // for (i = 0; i < validAnswers.length; i++) {
-  //   if (validAnswers[i] == answers[i].attributes.value) {
-  //     finalScore = finalScore +25;
-  //   }
-    const displayScore = document.querySelector(".displayScore");
-    let newElement = document.createElement("h2");
-    newElement.innerHTML = `Your score is ${finalScore} %`;
-    displayScore.append(newElement);
-  
+  displayingScore(finalScore);
+  btnScore.setAttribute("disabled", "true");
+}
+
+function displayingScore(finalScore){
+  const displayScore = document.querySelector(".displayScore");
+  let newElement = document.createElement("h2");
+  newElement.innerHTML = `Your score is ${finalScore} %`;
+  displayScore.append(newElement);
+  const btnStartOver = document.createElement("div");
+  btnStartOver.innerHTML = `<input type="button" id="newTest" class="btn test" value="start a new test" />`
+  displayScore.append(btnStartOver);
+  console.log(btnStartOver);
+  const startOver = document.getElementById('newTest');
+  console.log(startOver);
+  startOver.addEventListener("click", () => {
+    location.reload();
+    console.log("hello");
+  });
 }
